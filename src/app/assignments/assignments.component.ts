@@ -2,7 +2,7 @@ import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { AfterViewInit, Component, NgZone, OnInit, ViewChild} from '@angular/core';
 import { filter, map, pairwise, tap, throttleTime } from 'rxjs';
 import { AssignmentsService } from '../shared/assignments.service';
-import { Assignment } from './assignment.model';
+import { Assignment, Eleve, Matiere, Prof } from './assignment.model';
 
 @Component({
   selector: 'app-assignments',
@@ -11,7 +11,11 @@ import { Assignment } from './assignment.model';
 })
 export class AssignmentsComponent implements OnInit, AfterViewInit {
   assignments:Assignment[] = [];
-  displayedColumns: string[] = ['id', 'nom', 'dateDeRendu', 'rendu'];
+  eleves:Eleve[] = [];
+  matieres:Matiere[] = [];
+  profs:Prof[] = [];
+
+  displayedColumns: string[] = ['id', 'nom', 'dateDeRendu', 'rendu','auteur','matiere','note','remarque'];
 
   // pagination
   page=1;
