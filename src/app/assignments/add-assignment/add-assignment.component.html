@@ -1,5 +1,4 @@
 <form ngForm #assignmentForm (submit)="onSubmit(); assignmentForm.reset()" class="form">
-  <label for="erreur_note" *ngIf="erreur_note" > {{erreur_note}} </label>
   <mat-form-field>
     <input matInput placeholder="Nom de l'assignment" [(ngModel)]="nomAssignment" name="nom" required>
   </mat-form-field>
@@ -20,7 +19,7 @@
 
 
   <mat-form-field>
-    <input matInput type="number" min = "0" placeholder="Note"  [(ngModel)]="note"  name="note" required>
+    <input matInput type="number" min = "0" max="20"  placeholder="Note"  [(ngModel)]="note"  name="note" required>
   </mat-form-field>
   <mat-form-field>
     <input matInput placeholder="Remarques"  [(ngModel)]="remarques" name="remarque" required>

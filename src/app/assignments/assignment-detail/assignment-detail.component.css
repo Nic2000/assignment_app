@@ -3,3 +3,15 @@
   justify-content: space-between;
   align-items: flex-end;
 }
+.example-card {
+  max-width: 400px;
+  margin-top: 2px;
+}
+
+.example-header-image {
+  background-size: cover;
+}
+
+.erreur {
+  color: red;
+}

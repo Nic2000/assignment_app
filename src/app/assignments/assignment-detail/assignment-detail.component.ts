@@ -11,7 +11,8 @@ import { Assignment } from '../assignment.model';
 })
 export class AssignmentDetailComponent implements OnInit {
   assignmentTransmis?: Assignment;
-
+  //on va creer la variable d'erreur pour stocker le message d'erreur lorsque l'assignment n'a pas de note
+  erreur_note?:string;
   constructor(
     private assignmentsService: AssignmentsService,
     private authService:AuthService,
@@ -36,15 +37,20 @@ export class AssignmentDetailComponent implements OnInit {
 
   onAssignmentRendu() {
     if (this.assignmentTransmis) {
-      this.assignmentTransmis.rendu = true;
-
-      this.assignmentsService
-        .updateAssignment(this.assignmentTransmis)
-        .subscribe((reponse) => {
-          console.log(reponse.message);
-          // et on navigue vers la page d'accueil pour afficher la liste
-          this.router.navigate(['/home']);
+      //On ne peut pas marquer le devoir comme rendu que lorsqu'il y a une note
+      if(!this.assignmentTransmis.note){
+          this.erreur_note = "Vous devriez ajouter une note avant de mettre le devoir comme rendu";
+      }
+      else{
+        this.assignmentTransmis.rendu = true;
+        this.assignmentsService
+          .updateAssignment(this.assignmentTransmis)
+          .subscribe((reponse) => {
+            console.log(reponse.message);
+            // et on navigue vers la page d'accueil pour afficher la liste
+            this.router.navigate(['/home']);
         });
+      }
     }
   }
 

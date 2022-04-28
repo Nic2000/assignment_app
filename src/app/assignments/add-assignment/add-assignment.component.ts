@@ -22,8 +22,7 @@ export class AddAssignmentComponent implements OnInit {
   note!:number;
   remarques!:string;
 
-  //on crée uns string pour stocker l'erreur à afficher
-  erreur_note ?: string;
+
   constructor(private assignmentsService:AssignmentsService, private router:Router) {}
 
   ngOnInit(): void {}
@@ -34,28 +33,25 @@ export class AddAssignmentComponent implements OnInit {
       'nom = ' + this.nomAssignment + ' date de rendu = ' + this.dateDeRendu
     );
     if(!this.note){
-       this.erreur_note = "Vous devriez d'abord inserer une note";
+
     }
-    else{
-        let newAssignment = new Assignment();
-        newAssignment.id = Math.round(Math.random()*10000000);
-        newAssignment.nom = this.nomAssignment;
-        newAssignment.dateDeRendu = this.dateDeRendu;
-        newAssignment.rendu = false;
-        newAssignment.eleve = this.eleve;
-        newAssignment.matiere = this.matiere;
-        newAssignment.note = this.note;
-        newAssignment.remarques = this.remarques;
+    let newAssignment = new Assignment();
+    newAssignment.id = Math.round(Math.random()*10000000);
+    newAssignment.nom = this.nomAssignment;
+    newAssignment.dateDeRendu = this.dateDeRendu;
+    newAssignment.rendu = false;
+    newAssignment.eleve = this.eleve;
+    newAssignment.matiere = this.matiere;
+    newAssignment.note = this.note;
+    newAssignment.remarques = this.remarques;
 
-        this.assignmentsService.addAssignment(newAssignment)
-        .subscribe(reponse => {
-          console.log(reponse.message);
+    this.assignmentsService.addAssignment(newAssignment)
+    .subscribe(reponse => {
+      console.log(reponse.message);
 
-          // il va falloir naviguer (demander au router) d'afficher à nouveau la liste
-          // en gros, demander de naviguer vers /home
-          this.router.navigate(["/home"]);
-      })
-    }
-
+      // il va falloir naviguer (demander au router) d'afficher à nouveau la liste
+      // en gros, demander de naviguer vers /home
+      this.router.navigate(["/home"]);
+    })
   }
 }
