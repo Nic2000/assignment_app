@@ -1,13 +1,23 @@
 <form ngForm #assignmentForm (submit)="onSubmit(); assignmentForm.reset()" class="form">
+  <label for="erreur_note" *ngIf="erreur_note" > {{erreur_note}} </label>
   <mat-form-field>
     <input matInput placeholder="Nom de l'assignment" [(ngModel)]="nomAssignment" name="nom" required>
   </mat-form-field>
-  <mat-form-field>
-      <input matInput placeholder="Auteur"  [(ngModel)]="auteur"  name="auteur" required>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Choisissez un Auteur</mat-label>
+    <select matNativeControl required  [(ngModel)]="eleve" name="eleve">
+        <option *ngFor="let eleve of eleves" [ngValue]="eleve" >{{eleve.nom_eleve}} )</option>
+    </select>
   </mat-form-field>
-  <mat-form-field>
-    <input matInput placeholder="Matière"  [(ngModel)]="matiere"  name="matiere" required>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Choisissez une matière</mat-label>
+    <select matNativeControl required  [(ngModel)]="matiere" name="matiere">
+        <option *ngFor="let matiere of matieres" [ngValue]="matiere" >{{matiere.nom_matiere}} {{matiere.prof.nom_prof}} )</option>
+    </select>
   </mat-form-field>
+
 
   <mat-form-field>
     <input matInput type="number" min = "0" placeholder="Note"  [(ngModel)]="note"  name="note" required>
