@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AssignmentsService } from 'src/app/shared/assignments.service';
 import { Assignment } from '../assignment.model';
-
+import { Eleve } from '../eleve.model';
+import { Matiere } from '../matiere.model';
 @Component({
   selector: 'app-edit-assignment',
   templateUrl: './edit-assignment.component.html',
@@ -12,6 +13,12 @@ export class EditAssignmentComponent implements OnInit {
   assignment!: Assignment | undefined;
   nomAssignment!: string;
   dateDeRendu!: Date;
+  eleve!:Eleve;
+  eleves!:Eleve[];
+  matiere!:Matiere;
+  matieres!:Matiere[];
+  note!:number;
+  remarques!:string;
 
   constructor(
     private assignmentsService: AssignmentsService,
@@ -43,6 +50,10 @@ export class EditAssignmentComponent implements OnInit {
       // Pour pré-remplir le formulaire
       this.nomAssignment = assignment.nom;
       this.dateDeRendu = assignment.dateDeRendu;
+      this.eleve = assignment.eleve;
+      this.matiere = assignment.matiere;
+      this.note = assignment.note;
+      this.remarques = assignment.remarques;
     });
   }
 
@@ -52,6 +63,10 @@ export class EditAssignmentComponent implements OnInit {
     // on récupère les valeurs dans le formulaire
     this.assignment.nom = this.nomAssignment;
     this.assignment.dateDeRendu = this.dateDeRendu;
+    this.assignment.eleve = this.eleve;
+    this.assignment.matiere = this.matiere;
+    this.assignment.note = this.note;
+    this.assignment.remarques = this.remarques;
 
     this.assignmentsService
       .updateAssignment(this.assignment)

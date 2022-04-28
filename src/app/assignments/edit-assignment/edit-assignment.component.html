@@ -10,6 +10,29 @@
       </mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label> Edition de l'auteur</mat-label>
+      <select matNativeControl required  [(ngModel)]="eleve" name="eleve">
+          <option *ngFor="let eleve of eleves" [ngValue]="eleve" >{{eleve.nom_eleve}} )</option>
+      </select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Edition de la matière</mat-label>
+      <select matNativeControl required  [(ngModel)]="matiere" name="matiere">
+          <option *ngFor="let matiere of matieres" [ngValue]="matiere" >{{matiere.nom_matiere}} {{matiere.prof.nom_prof}} )</option>
+      </select>
+    </mat-form-field>
+
+
+    <mat-form-field>
+      <input matInput type="number" min = "0" max="20"  placeholder="Note"  [(ngModel)]="note"  name="note" required>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Remarques"  [(ngModel)]="remarques" name="remarque" required>
+    </mat-form-field>
+
     <button mat-raised-button color="primary" [disabled]="((!nomAssignment)||(!dateDeRendu))">
       Sauver
     </button>
