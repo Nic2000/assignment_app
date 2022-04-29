@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {MatSelectModule} from '@angular/material/select';
 import { Router } from '@angular/router';
 import { AssignmentsService } from 'src/app/shared/assignments.service';
+import { EleveService } from 'src/app/shared/eleves.service';
+import { MatiereService } from 'src/app/shared/matieres.service';
 import { Assignment } from '../assignment.model';
 import { Eleve } from '../eleve.model';
 import { Matiere } from '../matiere.model';
@@ -12,29 +14,44 @@ import { Prof } from '../prof.model';
   styleUrls: ['./add-assignment.component.css'],
 })
 export class AddAssignmentComponent implements OnInit {
+  constructor(private assignmentsService:AssignmentsService,private eleveService:EleveService,private matiereService:MatiereService, private router:Router) {};
+  eleves:Eleve[] = [];
+  matieres!:Matiere[];
+  getEleves() {
+    // demander les données au service de gestion des eleves...
+    this.eleveService.getEleves()
+    .subscribe(reponse => {
+    //  console.log("données arrivées",reponse);
+      this.eleves = reponse;
+    });
+
+   // console.log("Après l'appel au service");
+  }
+  getMatieres() {
+    // demander les données au service de gestion des matieres...
+    this.matiereService.getMatieres()
+    .subscribe(reponse => {
+      this.matieres = reponse;
+    });
+  }
   // Champ de formulaire
   nomAssignment!: string;
   dateDeRendu!: Date;
   eleve!:Eleve;
-  eleves!:Eleve[];
   matiere!:Matiere;
-  matieres!:Matiere[];
   note!:number;
   remarques!:string;
 
 
-  constructor(private assignmentsService:AssignmentsService, private router:Router) {}
-
-  ngOnInit(): void {}
+  //appel de la liste des eleves
+  ngOnInit(): void { this.getEleves(); this.getMatieres();}
 
   onSubmit() {
     if((!this.nomAssignment) || (!this.dateDeRendu)) return;
     console.log(
       'nom = ' + this.nomAssignment + ' date de rendu = ' + this.dateDeRendu
     );
-    if(!this.note){
 
-    }
     let newAssignment = new Assignment();
     newAssignment.id = Math.round(Math.random()*10000000);
     newAssignment.nom = this.nomAssignment;

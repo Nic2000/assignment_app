@@ -15,3 +15,8 @@
 .erreur {
   color: red;
 }
+
+.photo_prof{
+  float: right;
+  width: 25px;
+}

@@ -34,16 +34,16 @@ export class AssignmentsService {
     //let a = this.assignments.find(a => a.id === id);
     //return of(a);
     return this.http.get<Assignment>(`${this.url}/${id}`)
-    .pipe(
-      map(a => {
-        a.nom = a.nom + " MODIFIE PAR UN MAP AVANT DE L'ENVOYER AU COMPOSANT D'AFFICHAGE";
-        return a;
-      }),
-      tap(a => {
-        console.log("Dans le tap, pour debug, assignment recu = " + a.nom)
-      }),
-      catchError(this.handleError<any>('### catchError: getAssignments by id avec id=' + id))
-    );
+    // .pipe(
+    //   map(a => {
+    //     a.nom = a.nom + " MODIFIE PAR UN MAP AVANT DE L'ENVOYER AU COMPOSANT D'AFFICHAGE";
+    //     return a;
+    //   }),
+    //   tap(a => {
+    //     console.log("Dans le tap, pour debug, assignment recu = " + a.nom)
+    //   }),
+    //   catchError(this.handleError<any>('### catchError: getAssignments by id avec id=' + id))
+    // );
   }
 
   private handleError<T>(operation: any, result?: T) {
