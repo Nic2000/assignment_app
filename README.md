@@ -1,28 +1,25 @@
-# AssignmentApp
+# Assignment App
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.5.
+Projet Angular
 
-## Development server
+### Par
+* Numéro 5: HERIHARSON Tamby Mampionona
+* Numéro 12: RAHARIFETRA Holy Nicole
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+### Pour le tester en local
 
-## Code scaffolding
+* Cloner le projet en utilisant le commande 
+```url
+git clone https://github.com/Nic2000/assignment_app.git
+```
+* Puis basculer dans le branche `modificationFinal`
+```url
+git checkout modificationFInal
+```
+* En suite le commande `npm install`
+* Enfin `ng serve`
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Bout de code
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
-# MBDS_Madagscar2021-2022Front
+* Pour le design login, on a utiliser une partie de code dans cette [tutoriel](https://shrimaliasi.medium.com/simple-login-ui-with-angular-and-material-design-5e7390ca404a)
+* Pour le[ nav-bar et le mat-tab](https://material.angular.io/)
