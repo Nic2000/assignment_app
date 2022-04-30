@@ -1,8 +1,10 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
-
+import {AuthService} from "../shared/auth.service";
 import { Subscription } from 'rxjs';
+import { User } from '../assignments/user.module';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -13,10 +15,16 @@ export class LoginComponent implements OnInit, OnDestroy {
   form = this.buildForm();
   isMobile = false;
 
+  email !:String;
+  password !: String;
+  erreur_msg ?: String;
   private subscriptions: Subscription[] = [];
+
   constructor(
     private breakpointObserver: BreakpointObserver,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private authservice:AuthService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -36,6 +44,17 @@ export class LoginComponent implements OnInit, OnDestroy {
     if (this.form?.invalid) {
       this.form?.markAllAsTouched();
       return;
+    }
+    else{
+        this.authservice.getUsers().subscribe( reponse => {
+          for(var val of reponse) {
+            if(val.email===this.email && val.password===this.password){
+              this.authservice.loggedIn=true;
+              this.router.navigate(['/home'])
+            }
+          }
+          this.erreur_msg="login incorrect ";
+        });
     }
     // TODO: make login call
   }

@@ -45,4 +45,7 @@ export class AppComponent {
       this.router.navigate(['/home'], { replaceUrl: true });
     });
   }
+  logout(){
+    this.router.navigate(['/']);
+  }
 }
