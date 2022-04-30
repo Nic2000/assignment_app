@@ -45,10 +45,19 @@ export class AuthService {
   }
 
   permis = false;
+
+
   isPermis(){
-    if(this.user.isAdmin){
-        this.permis = true;
-    }
+    this.getUsers().subscribe( reponse => {
+      for(var val of reponse) {
+        if(val.email===this.user.email && val.password===this.user.password){
+          if(val.isAdmin){
+            this.permis=true;
+          }
+        }
+      }
+    });
+
   }
   // // isAdmin().then(admin => { if(admin) { console.log("L'utilisateur est administrateur"); }})
 

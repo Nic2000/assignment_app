@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AssignmentsService } from 'src/app/shared/assignments.service';
 import { AuthService } from 'src/app/shared/auth.service';
 import { Assignment } from '../assignment.model';
+import { User } from '../user.module';
 
 @Component({
   selector: 'app-assignment-detail',
@@ -10,6 +11,7 @@ import { Assignment } from '../assignment.model';
   styleUrls: ['./assignment-detail.component.css'],
 })
 export class AssignmentDetailComponent implements OnInit {
+  user!:User;
   assignmentTransmis?: Assignment;
   //on va creer la variable d'erreur pour stocker le message d'erreur lorsque l'assignment n'a pas de note
   erreur_note?:string;
