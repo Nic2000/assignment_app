@@ -1,14 +1,13 @@
-const express = require('express')
-const user = require('../controllers/UserController')
-const router = express.Router()
+let User = require('../model/user');
 
-const { authMiddleware } = require('../controllers/UserController')
+// Récupérer liste des utilisateurs (GET)
 
-
-router.post('/login', user.login)
-
-router.get('/profile', authMiddleware, function (req, res) {
-  res.json({ 'access': true })
-})
-
-module.exports = router
+function getUsers(req, res){
+    User.find((err, users) => {
+        if(err){
+            res.send(err)
+        }
+        res.send(users);
+    });
+}
+module.exports = { getUsers };

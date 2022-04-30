@@ -5,12 +5,9 @@ let assignment = require('./routes/assignments');
 let eleves = require('./routes/eleves');
 let profs = require('./routes/profs');
 let matieres = require('./routes/matieres');
-let userRoute = require('./routes/UserRoute');
+let users= require('./routes/UserRoute');
 let mongoose = require('mongoose');
 const eleve = require('./model/eleve');
-const cors = require('cors');
-mongoose.Promise = global.Promise;
-//mongoose.set('debug', true);
 
 // remplacer toute cette chaine par l'URI de connexion à votre propre base dans le cloud s
 // const uri = 'mongodb+srv://mb:toto@cluster0.xtr0u.mongodb.net/assignments?retryWrites=true&w=majority';
@@ -67,31 +64,8 @@ app.route(prefix + '/assignments/:id')
   app.route(prefix + '/matieres')
   .get(matieres.getMatieres);
 
-  //authentification
- // const PORT = process.env.PORT || 5000;
-
-  mongoose.set('useNewUrlParser', true);
-  mongoose.set('useUnifiedTopology', true);
-  mongoose.set('useFindAndModify', false);
-  mongoose.set('useCreateIndex', true);
-  
-  // mongoose.connect(uri).then(
-  //   () => { console.log('Database is connected') },
-  //   err => { console.log('Can not connect to the database' + err) }
-  // );
-  
-
-  
-  app.use(bodyParser.urlencoded({ extended: false }));
-  app.use(bodyParser.json());
-  
-  // let corsOptions = {
-  //   origin: 'http://localhost:4200',
-  //   optionsSuccessStatus: 200
-  // }
-  
- // app.use(cors(corsOptions))
-  app.use(prefix + '/users', userRoute);
+  app.route(prefix + '/users')
+  .get(users.getUsers);
   
   // app.listen(PORT, () => {
   //   console.log(`Server is running on PORT ${PORT}`);
