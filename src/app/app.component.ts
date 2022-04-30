@@ -25,7 +25,7 @@ export class AppComponent {
       this.router.navigate(['/home']);
     } else {
       console.log('je me loggue');
-      this.authService.logIn('michel', 'monpassword');
+      this.authService.login('michel', 'monpassword');
     }
   }
 
