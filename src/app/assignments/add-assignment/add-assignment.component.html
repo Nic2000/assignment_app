@@ -6,14 +6,14 @@
   <mat-form-field appearance="fill">
     <mat-label>Choisissez un Auteur</mat-label>
     <select matNativeControl required  [(ngModel)]="eleve" name="eleve">
-        <option *ngFor="let eleve of eleves" [ngValue]="eleve" >{{eleve.nom_eleve}} )</option>
+        <option *ngFor="let eleve of eleves" [ngValue]="eleve" >{{eleve.nom_eleve}} </option>
     </select>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Choisissez une matière</mat-label>
     <select matNativeControl required  [(ngModel)]="matiere" name="matiere">
-        <option *ngFor="let matiere of matieres" [ngValue]="matiere" >{{matiere.nom_matiere}} {{matiere.prof.nom_prof}} )</option>
+        <option *ngFor="let matiere of matieres" [ngValue]="matiere" >{{matiere.nom_matiere}} - Prof: {{matiere.prof.nom_prof}} </option>
     </select>
   </mat-form-field>
 

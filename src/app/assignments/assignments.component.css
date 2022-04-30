@@ -34,3 +34,18 @@ table {
 .example-item {
   height: 150px;
 }
+h2 {
+  text-align: center;
+}
+.barrePagination {
+  text-align: center;
+}
+.example-card {
+  max-width: 400px;
+  text-align: center;
+}
+
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}

@@ -1,10 +1,15 @@
+<div *ngIf="router.url === '/'">
+  <router-outlet></router-outlet>
+</div>
+<div *ngIf="router.url === '/home'">
 <div class="container">
-  <h1>
-    <nav>
-      <a routerLink="/home">{{titre}}</a>
-    </nav>
-  </h1>
-  <mat-slide-toggle (click)="onLoginLogout()">Login</mat-slide-toggle>
+  <mat-toolbar color="primary">
+    <span><a mat-button routerLink="/home">{{titre}}</a></span>
+    <div class="spacer"></div>
+      <a mat-button routerLink="/home">Acceuil</a>
+      <a mat-button routerLink="/logout">Deconnexion</a>
+    </mat-toolbar>
+  <!-- <mat-slide-toggle (click)="onLoginLogout()">Connexion</mat-slide-toggle> -->
   <br>
   <!--
   <button mat-button color="primary" (click)="genererDonneesDeTest()">Peupler BD avec données de test</button>
@@ -12,3 +17,63 @@
 </div>
 
 <router-outlet></router-outlet>
+</div>
+<div *ngIf="router.url === '/add'">
+  <div class="container">
+    <!-- <h1>
+      <nav>
+        <a routerLink="/home">{{titre}}</a>
+      </nav>
+    </h1> -->
+    <mat-toolbar color="primary">
+      <span><a mat-button routerLink="/home">{{titre}}</a></span>
+      <div class="spacer"></div>
+        <a mat-button routerLink="/home">Acceuil</a>
+        <a mat-button routerLink="/logout">Deconnexion</a>
+      </mat-toolbar>
+    <!-- <mat-slide-toggle (click)="onLoginLogout()">Connexion</mat-slide-toggle> -->
+    <br>
+    <!--
+    <button mat-button color="primary" (click)="genererDonneesDeTest()">Peupler BD avec données de test</button>
+    -->
+  </div>
+
+  <router-outlet></router-outlet>
+</div>
+
+<div *ngIf="router.url === '/assignment/{{id}}'">
+    <div class="container">
+      <mat-toolbar color="primary">
+        <span><a mat-button routerLink="/home">{{titre}}</a></span>
+        <div class="spacer"></div>
+          <a mat-button routerLink="/home">Acceuil</a>
+          <a mat-button routerLink="/logout">Deconnexion</a>
+        </mat-toolbar>
+      <!-- <mat-slide-toggle (click)="onLoginLogout()">Connexion</mat-slide-toggle> -->
+      <br>
+      <!--
+      <button mat-button color="primary" (click)="genererDonneesDeTest()">Peupler BD avec données de test</button>
+      -->
+    </div>
+
+    <router-outlet></router-outlet>
+</div>
+
+
+<div *ngIf="router.url === '/assignment/:id/edit'">
+  <div class="container">
+    <mat-toolbar color="primary">
+      <span><a mat-button routerLink="/home">{{titre}}</a></span>
+      <div class="spacer"></div>
+        <a mat-button routerLink="/home">Acceuil</a>
+        <a mat-button routerLink="/logout">Deconnexion</a>
+      </mat-toolbar>
+    <!-- <mat-slide-toggle (click)="onLoginLogout()">Connexion</mat-slide-toggle> -->
+    <br>
+    <!--
+    <button mat-button color="primary" (click)="genererDonneesDeTest()">Peupler BD avec données de test</button>
+    -->
+  </div>
+
+  <router-outlet></router-outlet>
+</div>

@@ -13,7 +13,7 @@ export class AppComponent {
 
   constructor(
     private authService: AuthService,
-    private router: Router,
+    public router: Router,
     private assignmentsService: AssignmentsService
   ) {}
 

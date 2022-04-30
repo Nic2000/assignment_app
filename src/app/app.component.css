@@ -4,3 +4,14 @@
 p {
   font-family: Lato;
 }
+
+.mat-toolbar{
+  background-color: rgb(1, 29, 82);
+  color: white;
+}
+.mat-button{
+   color: white;
+}
+.spacer{
+  flex: 1 1 auto;
+}
