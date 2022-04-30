@@ -77,6 +77,6 @@ export class AssignmentDetailComponent implements OnInit {
   }
 
   isLoggedIn() {
-    return this.authService.loggedIn;
+    return this.authService.permis;
   }
 }

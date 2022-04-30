@@ -11,6 +11,7 @@ const httpOptions = {
 })
 export class AuthService {
   loggedIn = false;
+  user !: User;
   constructor(private http: HttpClient) { }
   login(username: string, password: string): Observable<any> {
     return this.http.post(AUTH_API + 'signin', {
@@ -43,6 +44,12 @@ export class AuthService {
     return isUserAdmin;
   }
 
+  permis = false;
+  isPermis(){
+    if(this.user.isAdmin){
+        this.permis = true;
+    }
+  }
   // // isAdmin().then(admin => { if(admin) { console.log("L'utilisateur est administrateur"); }})
 
   // constructor() { }
