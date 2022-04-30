@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from "../shared/auth.service";
 import { Subscription } from 'rxjs';
 import { User } from '../assignments/user.module';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -14,14 +15,16 @@ export class LoginComponent implements OnInit, OnDestroy {
   form = this.buildForm();
   isMobile = false;
 
-  user !:User;
+  email !:String;
+  password !: String;
   erreur_msg ?: String;
   private subscriptions: Subscription[] = [];
-  router: any;
+
   constructor(
     private breakpointObserver: BreakpointObserver,
     private formBuilder: FormBuilder,
     private authservice:AuthService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -43,11 +46,9 @@ export class LoginComponent implements OnInit, OnDestroy {
       return;
     }
     else{
-
-
         this.authservice.getUsers().subscribe( reponse => {
           for(var val of reponse) {
-            if(val.email===this.user.email && val.password===this.user.password){
+            if(val.email===this.email && val.password===this.password){
               this.authservice.loggedIn=true;
               this.router.navigate(['/home'])
             }
