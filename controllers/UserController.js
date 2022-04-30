@@ -2,37 +2,37 @@ const User = require('../model/User')
 const jwt = require('jsonwebtoken')
 
 exports.login = function (req, res) { 
-  const { email, password } = req.body
+    const { email, password } = req.body
 
-  if (!email || !password) {
-    return res.status(422).json({ 'error': 'Remplissez les champs vides' })
-  }
-  User.findOne({ email }, function (err, user) {
-    if (err) {
-      return res.status(422).json({
-        'error': 'Il y a une erreur'
-      })
+    if (!email || !password) {
+        return res.status(422).json({ 'error': 'Remplissez les champs vides' })
     }
+    User.findOne({ email }, function (err, user) {
+        if (err) {
+        return res.status(422).json({
+            'error': 'Il y a une erreur'
+        })
+        }
 
-    if (!user) {
-      return res.status(422).json({ 'error': 'Utilisateur invalide' })
-    }
+        if (!user) {
+        return res.status(422).json({ 'error': 'Utilisateur invalide' })
+        }
 
-    if (user.hasSamePassword(password)) {
-      json_token = jwt.sign(
-        {
-          userId: user.id,
-          username: user.username
-        },
-        env.secret,
-        { expiresIn: '1h' })
+        if (user.hasSamePassword(password)) {
+        json_token = jwt.sign(
+            {
+            userId: user.id,
+            username: user.username
+            },
+            env.secret,
+            { expiresIn: '1h' })
 
-      return res.json(json_token)
-    }
-    else {
-      return res.status(422).json({ 'error': 'E-mail ou mot de passe incorrect' })
-    }
-  })
+        return res.json(json_token)
+        }
+        else {
+        return res.status(422).json({ 'error': 'E-mail ou mot de passe incorrect' })
+        }
+    })
 }
 
 exports.authMiddleware = function (req, res, next) {

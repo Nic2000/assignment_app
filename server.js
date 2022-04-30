@@ -91,7 +91,7 @@ app.route(prefix + '/assignments/:id')
   // }
   
  // app.use(cors(corsOptions))
-  app.use('prefix + '/users, userRoute);
+  app.use(prefix + '/users', userRoute);
   
   // app.listen(PORT, () => {
   //   console.log(`Server is running on PORT ${PORT}`);
