@@ -20,3 +20,7 @@
   float: right;
   width: 25px;
 }
+
+.main {
+  align-items: center;
+}

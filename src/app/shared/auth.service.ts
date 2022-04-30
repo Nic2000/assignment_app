@@ -44,7 +44,7 @@ export class AuthService {
     return isUserAdmin;
   }
 
-  permis = false;
+  permis = true;
   isPermis(){
     if(this.user.isAdmin){
         this.permis = true;
